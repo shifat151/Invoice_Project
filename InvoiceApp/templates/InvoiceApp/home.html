@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'InvoiceApp/create_invoice.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table-responsive table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date Span</th>
+                    <th scope="col">Working hour</th>
+                    <th scope="col">$/hour</th>
+                    <th scope="col">Total Salary</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ invoice.name }}</td>
+                    <td>{{ invoice.address }}</td>
+                    <td>{{ invoice.email }}</td>
+                    <td>{{ invoice.start_date }}-{{ invoice.end_date }}</td>
+                    <td>{{ invoice.hours}}</td>
+                    <td>{{ invoice.salary_per_hour}}</td>
+                    <td>{{ invoice.total_salary }}</td>
+                    <td>{{ invoice.status }}</td>
+                    <td><a href="{{ invoice.get_absolute_url }}">Edit</a> | <a
+                            href="{% url 'delete_invoice' invoice.id %}">Delete</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{% static 'InvoiceApp/create_invoice.js' %}"></script>
+{% endblock %}

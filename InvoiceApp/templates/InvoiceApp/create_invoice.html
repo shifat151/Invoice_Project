@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'InvoiceApp/create_invoice.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row d-flex justify-content-center" id="contact-form-div">
+    <div class="col-md-6">
+        <h3 class="text-center">Create Invoice</h3>
+        {% if msg %}
+        <div class="alert alert-primary" role="alert">
+        {{ msg }}
+        </div>
+        {% endif %}
+        <br>
+        {% load widget_tweaks %}
+        <form method="post" enctype="multipart/form-data" data-url='{{ request.build_absolute_uri|safe }}'
+            id="create_invoice">
+            {% csrf_token %}
+
+            {% if form_message %}
+            <div class="alert alert-{{ form_message.alert }} " role="alert">
+                {{ form_message.message }}
+            </div>
+            {% endif %}
+
+            {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+            {% endfor %}
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% if form.is_bound %}
+                {% if field.errors %}
+                {% render_field field class="form-control is-invalid" %}
+                {% for error in field.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+                {% else %}
+                {% render_field field class="form-control is-valid" %}
+                {% endif %}
+                {% else %}
+                {% render_field field class="form-control" %}
+                {% endif %}
+                {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="div  text-center">
+                <button type="submit" class="btn btn-block btn-outline-primary">Save</button>
+            </div>
+
+        </form>
+        <br>
+
+    </div>
+
+</div>
+
+
+</div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{% static 'InvoiceApp/create_invoice.js' %}"></script>
+{% endblock %}
