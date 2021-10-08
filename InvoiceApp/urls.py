@@ -7,5 +7,6 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_invoice, name='delete_invoice'),
     path('pdf/<int:pk>/', views.generate_pdf, name='generate_pdf'),
     path('export-data/', views.export_csv, name='export_csv'),
+    path('filter-status/', views.filter_status, name='filter_status')
     
 ]

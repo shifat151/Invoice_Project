@@ -1,21 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
-{% block header %}
-
-{% include "nav.html" %}
-
-{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'InvoiceApp/create_invoice.css' %}">
 {% endblock %}
 
 {% block content %}
 
 
 <div class="row d-flex justify-content-center" id="contact-form-div">
-    <div class="col-md-6">
-        <h3 class="text-center">Edit Invoice</h3>
+    <div class="col-md-4">
+        <h3 class="text-center">Login</h3>
         {% if msg %}
         <div class="alert alert-primary" role="alert">
             {{ msg }}
@@ -67,9 +61,11 @@
                 {% endif %}
             </div>
             {% endfor %}
-            <div class="div  text-center">
-                <button type="submit" class="btn btn-block btn-outline-primary">Update</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Login</button>
             </div>
+
+
 
         </form>
         <br>
@@ -87,5 +83,4 @@
 
 
 {% block javascript %}
-<script src="{% static 'InvoiceApp/create_invoice.js' %}"></script>
 {% endblock %}

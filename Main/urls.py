@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('invoice/', include('InvoiceApp.urls')),
+    path('account/', include('Account.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

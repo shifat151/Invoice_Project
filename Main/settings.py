@@ -58,6 +58,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Main.urls'
+LOGIN_URL = 'Account:login'
+LOGOUT_REDIRECT_URL = 'Account:login'
+LOGIN_REDIRECT_URL = 'home'
 
 TEMPLATES = [
     {

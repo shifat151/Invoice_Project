@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% block header %}
+
+{% include "nav.html" %}
+
+{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'InvoiceApp/create_invoice.css' %}">

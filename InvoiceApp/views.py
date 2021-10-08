@@ -10,17 +10,19 @@ import os, uuid, csv
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 media_root = settings.MEDIA_ROOT
 media_url=settings.MEDIA_URL
 
-
+@login_required
 def home(request):
     context={'home':'active'}
     invoices=invoice.objects.all()
     context['invoices']=invoices
     return render(request, 'InvoiceApp/home.html', context)
 
+@login_required
 def create_invoice(request):
     context={'create':'active'}
     if request.method=='POST':
@@ -48,7 +50,7 @@ def create_invoice(request):
     context['form']=form
     return render(request,'InvoiceApp/create_invoice.html', context)
 
-
+@login_required
 def details_invoice(request, pk):
     context={}
     invoice1=get_object_or_404(invoice,pk=pk )
@@ -77,7 +79,7 @@ def details_invoice(request, pk):
     context['form']=form
     return render(request,'InvoiceApp/edit_invoice.html', context)
 
-
+@login_required
 def delete_invoice(request, pk):
     invoice1=get_object_or_404(invoice,pk=pk)
     invoice1.delete()
@@ -101,10 +103,11 @@ def render_to_pdf(template_src, context_dict={}):
         # return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+@login_required
 def generate_pdf(request, pk):
     context={}
     invoice1=get_object_or_404(invoice,pk=pk)
-    if request.method== 'POST':
+    if request.is_ajax()==True and request.method== 'POST':
         ajax_mess={}
         subject="Salary Invoice"
         receiver_email=invoice1.email
@@ -138,6 +141,7 @@ def generate_pdf(request, pk):
         # return HttpResponse(pdf, content_type='application/pdf')
         return render(request,'InvoiceApp/show_pdf.html',context)
 
+@login_required
 def export_csv(request):
     response=HttpResponse(content_type='text/csv')
 
@@ -148,6 +152,25 @@ def export_csv(request):
         writer.writerow(invoices)
     response['Content-Disposition']='attachment; filename="Salary_invoice.csv"'
     return response
+
+@login_required
+def filter_status(request):
+    context={}
+    status=request.GET.getlist('status[]')
+    print(status)
+    invoices=invoice.objects.all()
+    if(len(status))>0:
+        if 'paid' in status:
+            invoices=invoices.filter(status='paid')
+        if 'unpaid' in status:
+            invoices=invoices.filter(status='unpaid')
+        if 'due' in status:
+            invoices=invoices.filter(status='due')
+    context['invoices']=invoices
+    invoice_html=render_to_string('invoice_table.html',context)
+    return JsonResponse({'invoices': invoice_html})
+
+
 
 
 

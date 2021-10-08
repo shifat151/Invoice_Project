@@ -1,0 +1,18 @@
+{% for invoice in invoices %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ invoice.name }}</td>
+                    <td>{{ invoice.address }}</td>
+                    <td>{{ invoice.email }}</td>
+                    <td>{{ invoice.start_date }}-{{ invoice.end_date }}</td>
+                    <td>{{ invoice.hours}}</td>
+                    <td>{{ invoice.salary_per_hour}}</td>
+                    <td>{{ invoice.total_salary }}</td>
+                    <td>{{ invoice.status }}</td>
+                    <td><a href="{{ invoice.get_absolute_url }}"> <i class="fas fa-edit"></i></a>| <a
+                            href="{% url 'delete_invoice' invoice.id %}"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    <td><a href="{% url 'generate_pdf' invoice.id %}"><i class="fa">&#xf1c1;</i> </a></td>
+
+                </tr>
+{% endfor %}

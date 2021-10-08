@@ -1,55 +1,63 @@
 {% extends "base.html" %}
 {% load static %}
+{% block header %}
+
+{% include "nav.html" %}
+
+{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'InvoiceApp/create_invoice.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="row">
 
     <div class="col-md-12">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <a href=" {% url 'export_csv' %}" class="btn btn-primary" role="button" target="_blank">
+                    Export as CSV
+                </a>
+            </div>
+            <div class="col-auto">
+                <div class=" form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" data-filter="status" id="inlineCheckbox1"
+                        value="paid">
+                    <label class="form-check-label" for="inlineCheckbox1">Paid</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" data-filter="status" id="inlineCheckbox2"
+                        value="unpaid">
+                    <label class="form-check-label" for="inlineCheckbox2">Unpaid</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" data-filter="status" id="inlineCheckbox3"
+                        value="due">
+                    <label class="form-check-label" for="inlineCheckbox3">Due</label>
+                </div>
 
-        <a href=" {% url 'export_csv' %}" class="btn btn-primary" role="button" target="_blank">
-            Export as CSV
-        </a>
+            </div>
+        </div>
         <br>
         <br>
-        <table class="table-responsive table-striped table-bordered">
+        <table class="table-responsive table-striped table-bordered text-center">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Date Span</th>
-                    <th scope="col">Working hour</th>
-                    <th scope="col">$/hour</th>
-                    <th scope="col">Total Salary</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Manage</th>
-                    <th scope="col">PDF</th>
+                    <th style="width:2%" class="index" scope="col">#</th>
+                    <th style="width:15%" class="name" scope="col">Name</th>
+                    <th style="width:20%" class="address" scope="col">Address</th>
+                    <th style="width:15%" class="email" scope="col">Email</th>
+                    <th style="width:20%" class="date" scope="col">Date Span</th>
+                    <th style="width:5%" class="hour" scope="col">Working hour</th>
+                    <th style="width:5%" class="per_hour" scope="col">$/hour</th>
+                    <th style="width:8%" class="salary" scope="col">Total Salary</th>
+                    <th style="width:4%" class="status" scope="col">Status</th>
+                    <th style="width:4%" class="manage" scope="col">Manage</th>
+                    <th style="width:2%" class="pdf" scope="col">PDF</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for invoice in invoices %}
-                <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ invoice.name }}</td>
-                    <td>{{ invoice.address }}</td>
-                    <td>{{ invoice.email }}</td>
-                    <td>{{ invoice.start_date }}-{{ invoice.end_date }}</td>
-                    <td>{{ invoice.hours}}</td>
-                    <td>{{ invoice.salary_per_hour}}</td>
-                    <td>{{ invoice.total_salary }}</td>
-                    <td>{{ invoice.status }}</td>
-                    <td><a href="{{ invoice.get_absolute_url }}"> <i class="fas fa-edit"></i></a>| <a
-                            href="{% url 'delete_invoice' invoice.id %}"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                    <td><a href="{% url 'generate_pdf' invoice.id %}"><i class="fa">&#xf1c1;</i> </a></td>
-
-                </tr>
-                {% endfor %}
+            <tbody id="table_data">
+                {% include 'invoice_table.html' %}
             </tbody>
         </table>
     </div>
@@ -68,5 +76,5 @@
 
 
 {% block javascript %}
-<script src="{% static 'InvoiceApp/create_invoice.js' %}"></script>
+<script src="{% static 'InvoiceApp/home.js' %}"></script>
 {% endblock %}
