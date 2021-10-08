@@ -9,10 +9,10 @@
                     <td>{{ invoice.salary_per_hour}}</td>
                     <td>{{ invoice.total_salary }}</td>
                     <td>{{ invoice.status }}</td>
-                    <td><a href="{{ invoice.get_absolute_url }}"> <i class="fas fa-edit"></i></a>| <a
-                            href="{% url 'delete_invoice' invoice.id %}"><i class="fas fa-trash-alt"></i></a>
+                    <td><a href="{{ invoice.get_absolute_url }}"><i class="bi bi-pencil-square"></i>| <a
+                            href="{% url 'delete_invoice' invoice.id %}"><i class="bi bi-trash-fill"></i></a>
                     </td>
-                    <td><a href="{% url 'generate_pdf' invoice.id %}"><i class="fa">&#xf1c1;</i> </a></td>
+                    <td><a href="{% url 'generate_pdf' invoice.id %}"><i class="bi bi-file-earmark-pdf"></i> </a></td>
 
                 </tr>
 {% endfor %}
