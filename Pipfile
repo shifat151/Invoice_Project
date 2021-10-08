@@ -9,6 +9,7 @@ verify_ssl = true
 django = "==3.0.3"
 django-widget-tweaks = "*"
 python-decouple = "*"
+xhtml2pdf = "==0.2.5"
 
 [requires]
 python_version = "3.7"

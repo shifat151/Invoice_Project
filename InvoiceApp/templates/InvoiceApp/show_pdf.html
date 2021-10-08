@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'InvoiceApp/show_pdf.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-md-12">
+        {% if pdf_url %}
+        <iframe id="pdf" src="{{ pdf_url }}"></iframe>
+        <br>
+        <br>
+        <div class="text-center">
+            <div class="div" id="alert-box"></div>
+            <div class="row">
+                <div class="col-sm-6 d-flex justify-content-end">
+                    <a href=" {{ pdf_url }}" class="btn btn-primary" role="button" download rel="noopener noreferrer"
+                        target="_blank">
+                        Download PDF
+                    </a>
+                </div>
+                <div class="col-sm-6 d-flex justify-content-start">
+                    <form method="post" data-url='{{ request.build_absolute_uri|safe }}' id="send_pdf_form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Email PDF</button>
+                    </form>
+                </div> 
+            </div>
+
+
+        </div>
+        {% else %}
+        <div class="d-flex justify-content-center">PDF not available. Please try again!</div>
+        {% endif %}
+
+
+
+        <br>
+        <br>
+        <br>
+    </div>
+
+</div>
+
+
+
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{% static 'InvoiceApp/show_pdf.js' %}"></script>
+{% endblock %}

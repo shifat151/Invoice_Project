@@ -22,6 +22,7 @@
                     <th scope="col">Total Salary</th>
                     <th scope="col">Status</th>
                     <th scope="col">Manage</th>
+                    <th scope="col">PDF</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,9 +37,10 @@
                     <td>{{ invoice.salary_per_hour}}</td>
                     <td>{{ invoice.total_salary }}</td>
                     <td>{{ invoice.status }}</td>
-                    <td><a href="{{ invoice.get_absolute_url }}">Edit</a> | <a
-                            href="{% url 'delete_invoice' invoice.id %}">Delete</a>
+                    <td><a href="{{ invoice.get_absolute_url }}"> <i class="fas fa-edit"></i></a>| <a
+                            href="{% url 'delete_invoice' invoice.id %}"><i class="fas fa-trash-alt"></i></a>
                     </td>
+                    <td><a href="{% url 'generate_pdf' invoice.id %}">📑</a></td>
 
                 </tr>
                 {% endfor %}
@@ -51,6 +53,9 @@
 
 
 </div>
+
+
+
 
 
 {% endblock %}
