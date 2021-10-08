@@ -157,15 +157,16 @@ def export_csv(request):
 def filter_status(request):
     context={}
     status=request.GET.getlist('status[]')
-    print(status)
     invoices=invoice.objects.all()
     if(len(status))>0:
-        if 'paid' in status:
-            invoices=invoices.filter(status='paid')
-        if 'unpaid' in status:
-            invoices=invoices.filter(status='unpaid')
-        if 'due' in status:
-            invoices=invoices.filter(status='due')
+        invoices=invoices.filter(status__in=status)
+
+        # if 'paid' in status:
+        #     invoices=invoices.filter(status='paid')
+        # if 'unpaid' in status:
+        #     invoices=invoices.filter(status='unpaid')
+        # if 'due' in status:
+        #     invoices=invoices.filter(status='due')
     context['invoices']=invoices
     invoice_html=render_to_string('invoice_table.html',context)
     return JsonResponse({'invoices': invoice_html})
