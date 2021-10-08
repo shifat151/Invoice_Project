@@ -6,7 +6,7 @@ from io import BytesIO
 from django.http import HttpResponse, request, JsonResponse
 from django.template.loader import get_template, render_to_string
 from xhtml2pdf import pisa
-import os, uuid
+import os, uuid, csv
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.core.mail import EmailMessage
@@ -138,6 +138,16 @@ def generate_pdf(request, pk):
         # return HttpResponse(pdf, content_type='application/pdf')
         return render(request,'InvoiceApp/show_pdf.html',context)
 
-    
+def export_csv(request):
+    response=HttpResponse(content_type='text/csv')
+
+    writer=csv.writer(response)
+    writer.writerow(['id', 'Name','Address','Email','Start day', 'End day', 'Hours', 'Salary per hour', 'Total Salary', 'Status'])
+
+    for invoices in invoice.objects.all().values_list():
+        writer.writerow(invoices)
+    response['Content-Disposition']='attachment; filename="Salary_invoice.csv"'
+    return response
+
 
 
