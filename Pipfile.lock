@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e08ff7bce15fcb80c0e6899c835d4adeba7dc02bc9e6f23a2564460d444c88ee"
+            "sha256": "93652dfe93d895a8b0b6a3b07287492f39253ba999aaa76d943afbf15b630f74"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -32,6 +32,13 @@
             "markers": "python_version >= '3.6'",
             "version": "==3.4.1"
         },
+        "dj-database-url": {
+            "hashes": [
+                "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
+                "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"
+            ],
+            "version": "==0.5.0"
+        },
         "django": {
             "hashes": [
                 "sha256:2f1ba1db8648484dd5c238fb62504777b7ad090c81c5f1fd8d5eb5ec21b5f283",
@@ -39,6 +46,14 @@
             ],
             "index": "pypi",
             "version": "==3.0.3"
+        },
+        "django-heroku": {
+            "hashes": [
+                "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762",
+                "sha256:6af4bc3ae4a9b55eaad6dbe5164918982d2762661aebc9f83d9fa49f6009514e"
+            ],
+            "index": "pypi",
+            "version": "==0.3.1"
         },
         "django-widget-tweaks": {
             "hashes": [
@@ -62,6 +77,14 @@
             ],
             "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.18.2"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
+                "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
+            ],
+            "index": "pypi",
+            "version": "==20.1.0"
         },
         "html5lib": {
             "hashes": [
@@ -129,6 +152,23 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==8.3.2"
+        },
+        "psycopg2": {
+            "hashes": [
+                "sha256:2433931723bf6be4bd342e003ffa9a1cef2cb4de7735d5b063fd554fd64a744c",
+                "sha256:2a0497c8ade1a5a0dc3d62b7f1a4fbcbccfa15d9ef69cce064119cd723566392",
+                "sha256:3ad3cf4732ff7d87dc12031836e5097fc42be767193771da90b8b5038cdca412",
+                "sha256:453c5bc0563c9b9601ef9243c095da9e327f24da6917b7c3ede8e0cd9dd9477d",
+                "sha256:49c5838d90e83217909db3789d30a105385b5e696ec5168cda645546c542f35a",
+                "sha256:6d849117337afd1aa0a74ab9a6c9d2160228d25d5babfa4d9a98bf4a4dad8062",
+                "sha256:8980dbabfb2ed0866b6bd5687d1407c3bccaac1f2f496f1206472108be69b92d",
+                "sha256:a286480430af972be9c30333c48883890dc8d87eab0d591e24975dcf99abff6c",
+                "sha256:bc7ec9ab1f33edd5db40edfb407aabdc92e573c4fcacd9093a9a6f3dd93c7af2",
+                "sha256:d303d9f88ec839a51b430bbec0f4a8314d0d2a53f760e67e95e25e39f6d6fb5f",
+                "sha256:e9836455931ac3d91b71312fa3bb2b9db8c42720a53b7de7db082406e4828585"
+            ],
+            "index": "pypi",
+            "version": "==2.8"
         },
         "pypdf2": {
             "hashes": [
@@ -232,6 +272,14 @@
                 "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"
             ],
             "version": "==0.5.1"
+        },
+        "whitenoise": {
+            "hashes": [
+                "sha256:d234b871b52271ae7ed6d9da47ffe857c76568f11dd30e28e18c5869dbd11e12",
+                "sha256:d963ef25639d1417e8a247be36e6aedd8c7c6f0a08adcb5a89146980a96b577c"
+            ],
+            "markers": "python_version >= '3.5' and python_version < '4'",
+            "version": "==5.3.0"
         },
         "xhtml2pdf": {
             "hashes": [

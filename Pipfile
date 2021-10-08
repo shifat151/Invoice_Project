@@ -11,6 +11,9 @@ django-widget-tweaks = "*"
 python-decouple = "*"
 xhtml2pdf = "==0.2.5"
 faker = "*"
+django-heroku = "*"
+gunicorn = "*"
+psycopg2 = "==2.8"
 
 [requires]
 python_version = "3.7"
